@@ -1,7 +1,7 @@
 /*
 Part 6.1: Platformer Gravity
 
-First Platformer tutorial on gravity
+First Platformer tutorial about gravity
 */
 
 var pag = Game('tutorial', {'w': '500', 'h': '500'})
