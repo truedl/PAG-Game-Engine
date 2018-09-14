@@ -76,18 +76,14 @@ function Game(id, args={'w': '250', 'h': '250'}){
             start: function(){
               document.addEventListener('keypress', function(e){
                 e = e || window.event;
-                try {
-                  if(!pag.control.n.includes(e.charCode)){
-                    pag.control.n.push(e.charCode);
-                  }
-                } catch(e){}
+                if(!pag.control.n.includes(e.charCode)){
+                  pag.control.n.push(e.charCode);
+                }
               })
 
               document.addEventListener('keyup', function(e){
                 e = e || window.event;
-                try {
-                  pag.control.n.splice(pag.control.n.indexOf(e.charCode), 1);
-                } catch(e){}
+                pag.control.n.splice(pag.control.n.indexOf(e.charCode), 1);
               })
             },
             check: function(){
