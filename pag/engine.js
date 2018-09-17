@@ -17,12 +17,20 @@ function Game(id, args={'w': '250', 'h': '250'}){
               y();
             }, 1000/x)
           },
+          set: {
+            font: function(x){
+              ctx.font = x;
+            }
+          },
           draw: {
             color: function(color){
               ctx.fillStyle = color;
             },
             square: function(x, y, size){
               ctx.fillRect(x, y, size, size);
+            },
+            border: function(x, y, sw, sh){
+              ctx.strokeRect(x, y, sw, sh);
             },
             custom: function(x, y, sw, sh){
               ctx.fillRect(x, y, sw, sh);
@@ -141,14 +149,6 @@ function Game(id, args={'w': '250', 'h': '250'}){
               var xr = new XMLHttpRequest();
               xr.open(method, to, true);
               xr.send();
-            }
-          },
-          online: {
-            update: function(f, retfunc, _ajax, args){
-              setInterval(function(){
-                _ajax(args[0], args[1]);
-                retfunc(pag.cont['0']);
-              }, f*1000);
             }
           }
         }
