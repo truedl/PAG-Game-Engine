@@ -1,4 +1,4 @@
-x/*
+/*
 Part 7: Collisions
 
 Hello!, today we learn how to use pag.object.collision.detect and detect a box collision (pag.object.collision.box).
