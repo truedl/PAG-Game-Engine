@@ -17,6 +17,46 @@ function Game(id, args={'w': '250', 'h': '250'}){
               y();
             }, 1000/x)
           },
+          object: {
+            collision: {
+              box: function(obj, size, cnt){
+                if(cnt.x < obj[0]+size && cnt.x > obj[0]-size && cnt.y < obj[1]+size && cnt.y > obj[1]-size){
+                  return true;
+                } else {
+                  return false;
+                }
+              },
+              custom: function(a, cnt){
+                if(cnt.x < a[0] && cnt.x > a[1] && cnt.y < a[2] && cnt.y > a[3]){
+                  return true;
+                }
+                return false;
+              },
+              detect: function(c, f, cnt, args={'pos': [], 'size': [], 'custom': false}){
+                if(args['custom'] == undefined){
+                  var x = cnt.x;
+                  var y = cnt.y;
+                  if(f.substr(1, 1) == 'x'){
+                    if(f.substr(0, 1) == '+'){
+                      x += parseInt(f.substr(2));
+                    } else if(f.substr(0, 1) == '-'){
+                      x -= parseInt(f.substr(2));
+                    }
+                  } else if(f.substr(1, 1) == 'y'){
+                    if(f.substr(0, 1) == '+'){
+                      y += parseInt(f.substr(2));
+                    } else if(f.substr(0, 1) == '-'){
+                      y -= parseInt(f.substr(2));
+                    }
+                  }
+                  if(c(args['pos'], args['size'], new Controller(x, y))){
+                    return true;
+                  }
+                  return false;
+                }
+              }
+            }
+          },
           set: {
             font: function(x){
               ctx.font = x;
