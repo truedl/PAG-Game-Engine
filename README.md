@@ -20,5 +20,8 @@ https://github.com/truedl/PAG-Game-Engine/blob/master/examples/tutorial-part5.js
 # Part 6.1: Platformer Gravity
 https://github.com/truedl/PAG-Game-Engine/blob/master/examples/tutorial-part6-1.js
 
+# Part 7: Collisions
+https://github.com/truedl/PAG-Game-Engine/blob/master/examples/tutorial-part7.js
+
 # Main Example
 https://github.com/truedl/PAG-Game-Engine/blob/master/examples/example.js
