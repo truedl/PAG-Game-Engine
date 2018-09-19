@@ -1,4 +1,4 @@
-![alt text](https://raw.githubusercontent.com/truedl/truedl-images/master/logo.png)
+TL;DR![alt text](https://raw.githubusercontent.com/truedl/truedl-images/master/logo.png)
 
 # PAG-Game-Engine
 PAG Game Engine - Javascript Game Engine
