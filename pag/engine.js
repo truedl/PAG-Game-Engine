@@ -1,9 +1,13 @@
-function Game(id, args={'w': '250', 'h': '250'}){
+function Game(id, args={'w': '250', 'h': '250', 'loadInto': 'body'}){
   var x = document.createElement('canvas');
   x.id = id;
   x.width = args['w'];
   x.height = args['h'];
-  document.body.appendChild(x);
+  if(args['loadInto'] == 'body'){
+    document.body.appendChild(x);
+  } else {
+    document.getElementById(args['loadInto']).appendChild(x);
+  }
   this.game = document.getElementById(id);
   this.ctx = this.game.getContext('2d');
   return {game: this.game,
@@ -20,10 +24,18 @@ function Game(id, args={'w': '250', 'h': '250'}){
           object: {
             collision: {
               box: function(obj, size, cnt){
-                if(cnt.x < obj[0]+size && cnt.x > obj[0]-size && cnt.y < obj[1]+size && cnt.y > obj[1]-size){
-                  return true;
+                if(size instanceof Array){
+                  if(cnt.x < obj[0]+size[0] && cnt.x > obj[0]-size[0] && cnt.y < obj[1]+size[1] && cnt.y > obj[1]-size[1]){
+                    return true;
+                  } else {
+                    return false;
+                  }
                 } else {
-                  return false;
+                  if(cnt.x < obj[0]+size && cnt.x > obj[0]-size && cnt.y < obj[1]+size && cnt.y > obj[1]-size){
+                    return true;
+                  } else {
+                    return false;
+                  }
                 }
               },
               custom: function(a, cnt){
@@ -32,23 +44,23 @@ function Game(id, args={'w': '250', 'h': '250'}){
                 }
                 return false;
               },
-              detect: function(c, f, cnt, args={'pos': [], 'size': [], 'custom': false}){
-                if(args['custom'] == undefined){
-                  var x = cnt.x;
-                  var y = cnt.y;
-                  if(f.substr(1, 1) == 'x'){
-                    if(f.substr(0, 1) == '+'){
-                      x += parseInt(f.substr(2));
-                    } else if(f.substr(0, 1) == '-'){
-                      x -= parseInt(f.substr(2));
-                    }
-                  } else if(f.substr(1, 1) == 'y'){
-                    if(f.substr(0, 1) == '+'){
-                      y += parseInt(f.substr(2));
-                    } else if(f.substr(0, 1) == '-'){
-                      y -= parseInt(f.substr(2));
-                    }
+              detect: function(c, f, cnt, args={'pos': [], 'size': []}){
+                var x = cnt.x;
+                var y = cnt.y;
+                if(f.substr(1, 1) == 'x'){
+                  if(f.substr(0, 1) == '+'){
+                    x += parseInt(f.substr(2));
+                  } else if(f.substr(0, 1) == '-'){
+                    x -= parseInt(f.substr(2));
                   }
+                } else if(f.substr(1, 1) == 'y'){
+                  if(f.substr(0, 1) == '+'){
+                    y += parseInt(f.substr(2));
+                  } else if(f.substr(0, 1) == '-'){
+                    y -= parseInt(f.substr(2));
+                  }
+                }
+                if(args['custom'] == undefined){
                   if(c(args['pos'], args['size'], new Controller(x, y))){
                     return true;
                   }
