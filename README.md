@@ -1,4 +1,6 @@
-TL;DR![alt text](https://raw.githubusercontent.com/truedl/truedl-images/master/logo.png)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/truedl/truedl-images/master/logo.png" alt="text">
+</p>
 
 # PAG-Game-Engine
 PAG Game Engine - Javascript Game Engine
