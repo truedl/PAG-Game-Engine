@@ -1,8 +1,11 @@
-function Game(id, args={'w': '250', 'h': '250', 'loadInto': 'body'}){
+function Game(id, args={'w': '250', 'h': '250', 'loadInto': 'body'}, _sty=undefined){
   var x = document.createElement('canvas');
   x.id = id;
   x.width = args['w'];
   x.height = args['h'];
+  if(_sty != undefined){
+    x.style = _sty;
+  }
   if(args['loadInto'] == 'body'){
     document.body.appendChild(x);
   } else {
@@ -15,11 +18,15 @@ function Game(id, args={'w': '250', 'h': '250', 'loadInto': 'body'}){
           data: {},
           animate: {},
           cont: {},
+          _u: false,
           update: function(x, y){
-            setInterval(function(){
+            this._u = setInterval(function(){
               ctx.clearRect(0, 0, this.game.width, this.game.height);
               y();
             }, 1000/x)
+          },
+          stopUpdate: function(){
+            clearInterval(this._u);
           },
           object: {
             collision: {
@@ -145,6 +152,10 @@ function Game(id, args={'w': '250', 'h': '250', 'loadInto': 'body'}){
                 e = e || window.event;
                 pag.control.n.splice(pag.control.n.indexOf(e.charCode), 1);
               })
+            },
+            stop: function(){
+              document.removeEventListener('keypress', function(){console.log(0)});
+              document.removeEventListener('keyup', function(){console.log(0)});
             },
             check: function(){
               for(var i = 0; i < pag.control.n.length; i++){
