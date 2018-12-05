@@ -141,20 +141,20 @@ function Game(id, args={'w': '250', 'h': '250', 'loadInto': 'body'}, _sty=undefi
           control: {
             n: [],
             start: function(){
-              document.addEventListener('keypress', function(e){
+              document.addEventListener('keydown', function(e){
                 e = e || window.event;
-                if(!pag.control.n.includes(e.charCode)){
-                  pag.control.n.push(e.charCode);
+                if(!pag.control.n.includes(e.keyCode)){
+                  pag.control.n.push(e.keyCode);
                 }
               })
 
               document.addEventListener('keyup', function(e){
                 e = e || window.event;
-                pag.control.n.splice(pag.control.n.indexOf(e.charCode), 1);
+                pag.control.n.splice(pag.control.n.indexOf(e.keyCode), 1);
               })
             },
             stop: function(){
-              document.removeEventListener('keypress', function(){console.log(0)});
+              document.removeEventListener('keydown', function(){console.log(0)});
               document.removeEventListener('keyup', function(){console.log(0)});
             },
             check: function(){
@@ -169,7 +169,11 @@ function Game(id, args={'w': '250', 'h': '250', 'loadInto': 'body'}, _sty=undefi
               this.list[x] = y;
             },
             run: function(x){
-              this.list[x]();
+              try {
+                this.list[x]();
+              } catch {
+                console.log(x + ' key not binded!');
+              }
             }
           },
           platformer: {
