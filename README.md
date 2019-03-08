@@ -5,6 +5,9 @@
 # PAG-Game-Engine
 PAG Game Engine - Javascript Game Engine
 
+# Include
+https://truedl.github.io/PAG-Game-Engine/engine.min.js
+
 # About
 PAG Game Engine is easy syntaxed game engine for Javascript (Currect version 002b)
 
